@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Reference VS Copy</title>
+</head>
+<body>
+
+  <script>
+    // start with strings, numbers and booleans
+
+    // Let's say we have an array
+    let name='faizan';
+    let name2=name;
+
+    console.log(name,name2);
+
+    name2= 'Tariq';
+
+    console.log(name,name2);
+
+    const players = ['Wes', 'Sarah', 'Ryan', 'Poppy'];
+
+    const team=players
+
+    console.log(players,team);
+     team[3]=3432;
+     console.log(players,team);
+
+
+    // const sportmen = players.slice();
+        const sportmen=[...players];
+    sportmen[3]='faizan';
+
+    console.log(players,sportmen);
+
+    const guy={
+        name:'faizan',
+        age:24,
+        social:{
+            fb:'ft',
+            ig:'ft9'
+        }
+    }
+
+    // const captain=Object.assign({},guy,{number:10});
+    const captain = JSON.parse(JSON.stringify(guy));
+    captain.social.fb='ft98';
+
+    console.log(guy);
+    console.log(captain);
+
+
+
+
+    // and we want to make a copy of it.
+
+    // You might think we can just do something like this:
+
+    // however what happens when we update that array?
+
+    // now here is the problem!
+
+    // oh no - we have edited the original array too!
+
+    // Why? It's because that is an array reference, not an array copy. They both point to the same array!
+
+    // So, how do we fix this? We take a copy instead!
+
+    // one way
+
+    // or create a new array and concat the old one in
+
+    // or use the new ES6 Spread
+
+    // now when we update it, the original one isn't changed
+
+    // The same thing goes for objects, let's say we have a person object
+
+    // with Objects
+    const person = {
+      name: 'Wes Bos',
+      age: 80
+    };
+
+    // and think we make a copy:
+
+    // how do we take a copy instead?
+
+    // We will hopefully soon see the object ...spread
+
+    // Things to note - this is only 1 level deep - both for Arrays and Objects. lodash has a cloneDeep method, but you should think twice before using it.
+
+  </script>
+
+</body>
+</html>
